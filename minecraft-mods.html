@@ -8,17 +8,11 @@
         text-align: center;
         font-family: Arial, sans-serif;
         background-color: #f2f2f2;
-        margin: 0;
-        padding: 0;
     }
 
     h1 {
-        font-size: 60px;
         margin-top: 60px;
-    }
-
-    p {
-        font-size: 24px;
+        font-size: 50px;
     }
 
     button {
@@ -28,27 +22,17 @@
         background-color: #28a745;
         color: white;
         border: none;
-        border-radius: 12px;
+        border-radius: 10px;
         cursor: pointer;
         width: 80%;
         max-width: 400px;
     }
 
-    button:hover {
-        background-color: #218838;
+    #countdown {
+        font-size: 30px;
+        margin-top: 30px;
+        color: red;
     }
-
-    a {
-        text-decoration: none;
-    }
-
-    .back {
-        display: block;
-        margin-top: 40px;
-        font-size: 20px;
-        color: black;
-    }
-
     </style>
 </head>
 
@@ -56,21 +40,40 @@
 
 <h1>Minecraft Download Hub</h1>
 
-<p>Select what you want to download:</p>
+<button onclick="startDownload('https://www.curseforge.com/minecraft/mc-mods')">
+Download Mods
+</button>
 
-<a href="https://www.curseforge.com/minecraft/mc-mods" target="_blank">
-<button>Download Mods</button>
-</a>
+<button onclick="startDownload('https://www.curseforge.com/minecraft/customization')">
+Download Shaders
+</button>
 
-<a href="https://www.curseforge.com/minecraft/customization" target="_blank">
-<button>Download Shaders</button>
-</a>
+<button onclick="startDownload('https://www.planetminecraft.com/texture-packs/')">
+Download Texture Packs
+</button>
 
-<a href="https://www.planetminecraft.com/texture-packs/" target="_blank">
-<button>Download Texture Packs</button>
-</a>
+<div id="countdown"></div>
 
-<a href="index.html" class="back">Go Back Home</a>
+<script>
+function startDownload(link) {
+    let timeLeft = 10;
+    document.getElementById("countdown").innerHTML =
+        "Please wait " + timeLeft + " seconds...";
+
+    let timer = setInterval(function() {
+        timeLeft--;
+        document.getElementById("countdown").innerHTML =
+            "Please wait " + timeLeft + " seconds...";
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            document.getElementById("countdown").innerHTML =
+                "Opening Download...";
+            window.open(link, "_blank");
+        }
+    }, 1000);
+}
+</script>
 
 </body>
 </html>
