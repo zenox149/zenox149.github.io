@@ -57,11 +57,13 @@ Download Texture Packs
 <script>
 function startDownload(link) {
     let timeLeft = 10;
+
     document.getElementById("countdown").innerHTML =
         "Please wait " + timeLeft + " seconds...";
 
     let timer = setInterval(function() {
         timeLeft--;
+
         document.getElementById("countdown").innerHTML =
             "Please wait " + timeLeft + " seconds...";
 
@@ -69,8 +71,11 @@ function startDownload(link) {
             clearInterval(timer);
             document.getElementById("countdown").innerHTML =
                 "Opening Download...";
-            window.open(link, "_blank");
+
+            // Same tab redirect (NO popup block)
+            window.location.href = link;
         }
+
     }, 1000);
 }
 </script>
